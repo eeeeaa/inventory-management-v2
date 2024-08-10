@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Paranormal Object Management System</title>
+  </head>
+  <body>
+    <%- include("../common/navbar") %>
+
+    <h1><%=title%></h1>
+    <ul>
+      <% entities.map((entity) => { %>
+      <li>
+        <div>Identification: <%=entity.id%></div>
+        <div>Name: <%=entity.name%></div>
+        <div>Class: <%=entity.entity_class%></div>
+        <div>Status: <%=entity.status%></div>
+        <div>Date of Discovery: <%=entity.discover_date%></div>
+        <div>Managed by: <%=entity.manager%></div>
+        <div>
+          <p>Description:</p>
+          <p><%=entity.description%></p>
+        </div>
+      </li>
+      <% }) %>
+    </ul>
+  </body>
+</html>

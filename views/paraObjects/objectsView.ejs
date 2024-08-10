@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Paranormal Object Management System</title>
+  </head>
+  <body>
+    <%- include("../common/navbar") %>
+
+    <h1><%=title%></h1>
+    <ul>
+      <% objects.map((object) => { %>
+      <li>
+        <div>Identification: <%=object.id%></div>
+        <div>Name: <%=object.name%></div>
+        <div>Class: <%=object.object_class%></div>
+        <div>Date of Discovery: <%=object.discover_date%></div>
+        <div>Managed by: <%=object.manager%></div>
+        <div>
+          <p>Description:</p>
+          <p><%=object.description%></p>
+        </div>
+      </li>
+      <% }) %>
+    </ul>
+  </body>
+</html>

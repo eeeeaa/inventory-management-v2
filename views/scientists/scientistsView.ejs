@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Paranormal Object Management System</title>
+  </head>
+  <body>
+    <%- include("../common/navbar") %>
+
+    <h1><%=title%></h1>
+    <ul>
+      <% scientists.map((scientist) => { %>
+      <li>
+        <div>Identification: <%=scientist.id%></div>
+        <div>Name: <%=scientist.name%></div>
+        <div>Department: <%=scientist.department%></div>
+        <div>Managed entities count: <%=scientist.managed_entities%></div>
+        <div>Managed objects count: <%=scientist.managed_objects%></div>
+      </li>
+      <% }) %>
+    </ul>
+  </body>
+</html>
