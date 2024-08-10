@@ -9,6 +9,9 @@
     <%- include("../common/navbar") %>
 
     <h1><%=title%></h1>
+    <div>
+      <a href="/scientists/form">Insert Scientist data</a>
+    </div>
     <ul>
       <% scientists.map((scientist) => { %>
       <li>
@@ -17,6 +20,7 @@
         <div>Department: <%=scientist.department%></div>
         <div>Managed entities count: <%=scientist.managed_entities%></div>
         <div>Managed objects count: <%=scientist.managed_objects%></div>
+        <div><a href="/scientists/<%=scientist.id%>/form">Update data</a></div>
       </li>
       <% }) %>
     </ul>

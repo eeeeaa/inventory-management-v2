@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Paranormal Object Management System</title>
+  </head>
+  <body>
+    <h1><%=title%></h1>
+    <%- include("../common/navbar") %> <%- include("../common/errors") %>
+    <form <%if(scientist) {%>
+      action="/scientists/<%=scientist.id%>" method="post" <%} else {%>
+      action="/scientists" method="post"> <% } %>
+      <label for="name">Name</label>
+      <% if(scientist) { %>
+      <input
+        type="text"
+        name="name"
+        id="name"
+        value="<%=
+          scientist.name%>"
+        required
+      />
+      <%} else { %>
+      <input type="text" name="name" id="name" required />
+      <%}%>
+
+      <label for="department">Department</label>
+      <% if(scientist) { %>
+      <input
+        type="text"
+        name="department"
+        id="department"
+        value="<%=scientist.department%>"
+        required
+      />
+      <%} else { %>
+      <input type="text" name="department" id="department" required />
+      <%}%>
+
+      <button type="submit">
+        <%if(scientist) {%> Update <%} else {%> Create <%}%>
+      </button>
+    </form>
+  </body>
+</html>
