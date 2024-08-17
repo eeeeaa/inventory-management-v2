@@ -23,7 +23,7 @@ exports.getScientist = async (id) => {
     `,
     [id]
   );
-  return rows;
+  return rows[0];
 };
 
 exports.insertScientist = async ({ sci_name, department }) => {

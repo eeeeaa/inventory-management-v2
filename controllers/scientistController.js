@@ -24,7 +24,7 @@ exports.getScientistsUpdateForm = asyncHandler(async (req, res) => {
   const data = await repository.getScientist(req.params.id);
   res.render("scientists/scientistsForm", {
     title: "Update scientist",
-    scientist: data[0],
+    scientist: data,
   });
 });
 
@@ -57,7 +57,7 @@ exports.updateScientist = [
     if (!errors.isEmpty()) {
       return res.status(400).render("scientists/scientistsForm", {
         title: "Update scientist",
-        scientist: data[0],
+        scientist: data,
         errors: errors.array(),
       });
     }

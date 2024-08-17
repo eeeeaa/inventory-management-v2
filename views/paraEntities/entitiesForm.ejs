@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("../common/header") %>
+  <body>
+    <%- include("../common/navbar") %>
+    <h1><%=title%></h1>
+    <%- include("../common/errors") %>
+    <form class="para-entities-form" <%if(entity) {%>
+      action="/para-entities/<%=entity.id%>" method="post" <%} else {%>
+      action="/para-entities" method="post"> <% } %> <% if (entity) {%>
+      <label for="name">Name:</label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        value="<%=entity.name%>"
+        required
+      />
+      <label for="entity_class">Class</label>
+      <select name="entity_class" id="entity_class" required>
+        <% classes.forEach((entity_class) => { if (entity_class ===
+        entity.entity_class) { %>
+        <option value="<%=entity_class%>" selected><%=entity_class%></option>
+        <% } else { %>
+        <option value="<%=entity_class%>"><%=entity_class%></option>
+        <% } }); %>
+      </select>
+      <label for="status">Status</label>
+      <select name="status" id="status" required>
+        <% status_list.forEach((status) => { if (status === entity.status) { %>
+        <option value="<%=status%>" selected><%=status%></option>
+        <% } else { %>
+        <option value="<%=status%>"><%=status%></option>
+        <% } }); %>
+      </select>
+      <label for="discover_date">Date of discovery:</label>
+      <input
+        type="date"
+        name="discover_date"
+        id="discover_date"
+        required
+        value="<%=new Date(entity.discover_date).toISOString().substring(0, 10)%>"
+      />
+      <label for="manager_id">Manager:</label>
+      <select name="manager_id" id="manager_id" required>
+        <% if(managers){ managers.forEach((manager) => { if(manager.id ==
+        entity.manager_id){ %>
+        <option value="<%=manager.id%>" selected><%=manager.name%></option>
+        <%} else {%>
+        <option value="<%=manager.id%>"><%=manager.name%></option>
+        <% } }) } %>
+      </select>
+      <label for="description">Description:</label>
+      <textarea
+        name="description"
+        id="description"
+        cols="30"
+        rows="10"
+        placeholder="please describe this entity in detail."
+      >
+      <%=entity.description%>
+    </textarea
+      >
+      <%} else {%>
+
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required />
+      <label for="entity_class">Class</label>
+      <select name="entity_class" id="entity_class" required>
+        <option value="safe">safe</option>
+        <option value="euclid">euclid</option>
+        <option value="keter">keter</option>
+      </select>
+      <label for="status">Status</label>
+      <select name="status" id="status" required>
+        <option value="deceased">deceased</option>
+        <option value="alive">alive</option>
+        <option value="unknown">unknown</option>
+        <option value="shifted">shifted</option>
+      </select>
+      <label for="discover_date">Date of discovery:</label>
+      <input type="date" name="discover_date" id="discover_date" required />
+      <label for="manager_id">Manager:</label>
+      <select name="manager_id" id="manager_id" required>
+        <% if(managers) { %> <% managers.map((manager) => { %>
+        <option value="<%=manager.id%>"><%=manager.name%></option>
+        <%})%> <% } %>
+      </select>
+      <label for="description">Description:</label>
+      <textarea
+        name="description"
+        id="description"
+        cols="30"
+        rows="10"
+        placeholder="please describe this entity in detail."
+      ></textarea>
+      <%}%>
+
+      <button type="submit">
+        <%if(entity) {%> Update <%} else {%> Create <%}%>
+      </button>
+    </form>
+  </body>
+</html>
