@@ -5,6 +5,9 @@
     <%- include("../common/navbar") %>
 
     <h1><%=title%></h1>
+    <div>
+      <a href="/para-objects/form">Insert Object data</a>
+    </div>
     <ul>
       <% objects.map((object) => { %>
       <li>
@@ -17,6 +20,7 @@
           <p>Description:</p>
           <p><%=object.description%></p>
         </div>
+        <div><a href="/para-objects/<%=object.id%>/form">Update data</a></div>
       </li>
       <% }) %>
     </ul>

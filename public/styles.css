@@ -3,7 +3,8 @@ body {
   padding: 0;
 }
 
-.para-entities-form {
+.para-entities-form,
+.para-objects-form {
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -5,32 +5,24 @@
     <%- include("../common/navbar") %>
     <h1><%=title%></h1>
     <%- include("../common/errors") %>
-    <form class="para-entities-form" <%if(entity) {%>
-      action="/para-entities/<%=entity.id%>" method="post" <%} else {%>
-      action="/para-entities" method="post"> <% } %> <% if (entity) {%>
+    <form class="para-objects-form" <%if(object) {%>
+      action="/para-objects/<%=object.id%>" method="post" <%} else {%>
+      action="/para-objects" method="post"> <% } %> <% if (object) {%>
       <label for="name">Name:</label>
       <input
         type="text"
         id="name"
         name="name"
-        value="<%=entity.name%>"
+        value="<%=object.name%>"
         required
       />
-      <label for="entity_class">Class</label>
-      <select name="entity_class" id="entity_class" required>
-        <% classes.forEach((entity_class) => { if (entity_class ===
-        entity.entity_class) { %>
-        <option value="<%=entity_class%>" selected><%=entity_class%></option>
+      <label for="object_class">Class</label>
+      <select name="object_class" id="object_class" required>
+        <% classes.forEach((object_class) => { if (object_class ===
+        object.object_class) { %>
+        <option value="<%=object_class%>" selected><%=object_class%></option>
         <% } else { %>
-        <option value="<%=entity_class%>"><%=entity_class%></option>
-        <% } }); %>
-      </select>
-      <label for="status">Status</label>
-      <select name="status" id="status" required>
-        <% status_list.forEach((status) => { if (status === entity.status) { %>
-        <option value="<%=status%>" selected><%=status%></option>
-        <% } else { %>
-        <option value="<%=status%>"><%=status%></option>
+        <option value="<%=object_class%>"><%=object_class%></option>
         <% } }); %>
       </select>
       <label for="discover_date">Date of discovery:</label>
@@ -39,12 +31,12 @@
         name="discover_date"
         id="discover_date"
         required
-        value="<%=new Date(entity.discover_date).toISOString().substring(0, 10)%>"
+        value="<%=new Date(object.discover_date).toISOString().substring(0, 10)%>"
       />
       <label for="manager_id">Manager:</label>
       <select name="manager_id" id="manager_id" required>
         <% if(managers){ managers.forEach((manager) => { if(manager.id ==
-        entity.manager_id){ %>
+        object.manager_id){ %>
         <option value="<%=manager.id%>" selected><%=manager.name%></option>
         <%} else {%>
         <option value="<%=manager.id%>"><%=manager.name%></option>
@@ -56,25 +48,19 @@
         id="description"
         cols="30"
         rows="10"
-        placeholder="please describe this entity in detail."
+        placeholder="please describe this object in detail."
       >
-      <%=entity.description%>
+      <%=object.description%>
     </textarea
       >
       <%} else {%>
 
       <label for="name">Name:</label>
       <input type="text" id="name" name="name" required />
-      <label for="entity_class">Class</label>
-      <select name="entity_class" id="entity_class" required>
-        <% classes.map((entity_class) => { %>
-        <option value="<%=entity_class%>"><%=entity_class%></option>
-        <% }); %>
-      </select>
-      <label for="status">Status</label>
-      <select name="status" id="status" required>
-        <% status_list.map((status) => { %>
-        <option value="<%=status%>"><%=status%></option>
+      <label for="object_class">Class</label>
+      <select name="object_class" id="object_class" required>
+        <% classes.map((object_class) => { %>
+        <option value="<%=object_class%>"><%=object_class%></option>
         <% }); %>
       </select>
       <label for="discover_date">Date of discovery:</label>
@@ -91,12 +77,12 @@
         id="description"
         cols="30"
         rows="10"
-        placeholder="please describe this entity in detail."
+        placeholder="please describe this object in detail."
       ></textarea>
       <%}%>
 
       <button type="submit">
-        <%if(entity) {%> Update <%} else {%> Create <%}%>
+        <%if(object) {%> Update <%} else {%> Create <%}%>
       </button>
     </form>
   </body>

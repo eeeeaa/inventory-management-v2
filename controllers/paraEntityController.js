@@ -3,8 +3,8 @@ const repository = require("../db/paraEntitesRepository");
 const managerRepository = require("../db/scientistsRepository");
 const { body, validationResult } = require("express-validator");
 
-const status_list = ["decreased", "alive", "unknown", "shifted"];
-const classes = ["safe", "euclid", "keter"];
+const status_list = repository.getStatusList();
+const classes = repository.getEntityClasses();
 
 const validateParaEntityData = [
   body("name").trim().escape(),

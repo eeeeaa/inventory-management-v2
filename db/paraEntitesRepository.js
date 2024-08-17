@@ -1,5 +1,16 @@
 const pool = require("./dbInit");
 
+const status_list = ["decreased", "alive", "unknown", "shifted"];
+const classes = ["safe", "euclid", "keter"];
+
+exports.getStatusList = () => {
+  return status_list;
+};
+
+exports.getEntityClasses = () => {
+  return classes;
+};
+
 exports.getAllEntities = async () => {
   const { rows } = await pool.query(`
           SELECT scientists.name AS Manager, para_entities.*  
