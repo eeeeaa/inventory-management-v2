@@ -1,0 +1,26 @@
+<li class="objects-item">
+  <div class="objects-item info">
+    <div>Identification:</div>
+    <div><%=object.id%></div>
+    <div>Name:</div>
+    <div><%=object.name%></div>
+    <div>Class:</div>
+    <div><%=object.object_class%></div>
+    <div>Date of Discovery:</div>
+    <div>
+      <%=new Date(object.discover_date).toISOString().substring(0, 10)%>
+    </div>
+    <div>Managed by:</div>
+    <div><%=object.manager%></div>
+  </div>
+  <div class="description">
+    <p>Description:</p>
+    <p><%=object.description%></p>
+  </div>
+  <div class="button-list">
+    <div><a href="/para-objects/<%=object.id%>/form">Update data</a></div>
+    <div>
+      <a href="/para-objects/<%=object.id%>/delete">Delete data</a>
+    </div>
+  </div>
+</li>

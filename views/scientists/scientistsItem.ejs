@@ -1,0 +1,18 @@
+<li class="scientist-item">
+  <div class="scientist-item info">
+    <div>Identification:</div>
+    <div><%=scientist.id%></div>
+    <div>Name:</div>
+    <div><%=scientist.name%></div>
+    <div>Department:</div>
+    <div><%=scientist.department%></div>
+    <div>Managed entities count:</div>
+    <div><%=scientist.managed_entities%></div>
+    <div>Managed objects count:</div>
+    <div><%=scientist.managed_objects%></div>
+  </div>
+  <div class="button-list">
+    <div><a href="/scientists/<%=scientist.id%>/form">Update data</a></div>
+    <div><a href="/scientists/<%=scientist.id%>/delete">Delete data</a></div>
+  </div>
+</li>

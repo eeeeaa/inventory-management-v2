@@ -4,32 +4,17 @@
   <body>
     <%- include("../common/navbar") %>
 
-    <h1><%=title%></h1>
-    <div>
-      <a href="/para-entities/form">Insert Entity data</a>
+    <div class="content list-page">
+      <div class="item-header">
+        <h1><%=title%></h1>
+        <div>
+          <a href="/para-entities/form">Insert Entity data</a>
+        </div>
+      </div>
+      <ul class="item-list">
+        <% entities.map((entity) => { %> <%- include("entitiesItem",{ entity:
+        entity }) %> <% }) %>
+      </ul>
     </div>
-    <ul>
-      <% entities.map((entity) => { %>
-      <li>
-        <div>Identification: <%=entity.id%></div>
-        <div>Name: <%=entity.name%></div>
-        <div>Class: <%=entity.entity_class%></div>
-        <div>Status: <%=entity.status%></div>
-        <div>
-          Date of Discovery: <%=new
-          Date(entity.discover_date).toISOString().substring(0, 10)%>
-        </div>
-        <div>Managed by: <%=entity.manager%></div>
-        <div>
-          <p>Description:</p>
-          <p><%=entity.description%></p>
-        </div>
-        <div><a href="/para-entities/<%=entity.id%>/form">Update data</a></div>
-        <div>
-          <a href="/para-entities/<%=entity.id%>/delete">Delete data</a>
-        </div>
-      </li>
-      <% }) %>
-    </ul>
   </body>
 </html>

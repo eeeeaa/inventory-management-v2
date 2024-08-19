@@ -4,26 +4,17 @@
   <body>
     <%- include("../common/navbar") %>
 
-    <h1><%=title%></h1>
-    <div>
-      <a href="/para-objects/form">Insert Object data</a>
-    </div>
-    <ul>
-      <% objects.map((object) => { %>
-      <li>
-        <div>Identification: <%=object.id%></div>
-        <div>Name: <%=object.name%></div>
-        <div>Class: <%=object.object_class%></div>
-        <div>Date of Discovery: <%=object.discover_date%></div>
-        <div>Managed by: <%=object.manager%></div>
+    <div class="content list-page">
+      <div class="item-header">
+        <h1><%=title%></h1>
         <div>
-          <p>Description:</p>
-          <p><%=object.description%></p>
+          <a href="/para-objects/form">Insert Object data</a>
         </div>
-        <div><a href="/para-objects/<%=object.id%>/form">Update data</a></div>
-        <div><a href="/para-objects/<%=object.id%>/delete">Delete data</a></div>
-      </li>
-      <% }) %>
-    </ul>
+      </div>
+      <ul class="item-list">
+        <% objects.map((object) => { %> <%- include("objectsItem", { object:
+        object }) %> <% }) %>
+      </ul>
+    </div>
   </body>
 </html>

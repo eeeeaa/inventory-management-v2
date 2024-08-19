@@ -1,0 +1,30 @@
+<li class="entities-item">
+  <div class="entities-item info">
+    <div>Identification:</div>
+    <div><%=entity.id%></div>
+    <div>Name:</div>
+    <div><%=entity.name%></div>
+    <div>Class:</div>
+    <div><%=entity.entity_class%></div>
+    <div>Status:</div>
+    <div><%=entity.status%></div>
+    <div>Date of Discovery:</div>
+    <div>
+      <%=new Date(entity.discover_date).toISOString().substring(0, 10)%>
+    </div>
+    <div>Managed by:</div>
+    <div><%=entity.manager%></div>
+  </div>
+  <div class="description">
+    <p>Description:</p>
+    <p><%=entity.description%></p>
+  </div>
+  <div class="button-list">
+    <div>
+      <a href="/para-entities/<%=entity.id%>/form">Update data</a>
+    </div>
+    <div>
+      <a href="/para-entities/<%=entity.id%>/delete">Delete data</a>
+    </div>
+  </div>
+</li>
