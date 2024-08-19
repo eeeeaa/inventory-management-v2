@@ -5,6 +5,10 @@ require("dotenv").config();
 //Create and populate usernames table
 
 const SQL = `
+DROP TYPE IF EXISTS obj_class;
+DROP TYPE IF EXISTS ent_class;
+DROP TYPE IF EXISTS ent_status;
+
 CREATE TYPE obj_class AS ENUM ('safe', 'mild', 'hazard', 'biohazard', 'pandora');
 CREATE TYPE ent_class AS ENUM ('safe', 'euclid', 'keter');
 CREATE TYPE ent_status AS ENUM ('deceased','alive','unknown', 'shifted');
