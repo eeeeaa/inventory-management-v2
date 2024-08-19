@@ -112,3 +112,8 @@ exports.updateEntity = [
     res.redirect("/para-entities");
   }),
 ];
+
+exports.deleteEntity = asyncHandler(async (req, res) => {
+  await repository.deleteEntity(req.params.id);
+  res.redirect("/para-entities");
+});

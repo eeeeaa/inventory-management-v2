@@ -6,6 +6,7 @@ const controller = require("../controllers/paraEntityController");
 router.get("/", controller.getEntities);
 router.get("/form", controller.getEntitiesCreateForm);
 router.get("/:id/form", controller.getEntitiesUpdateForm);
+router.get("/:id/delete", controller.deleteEntity);
 
 router.post("/", controller.postEntity);
 router.post("/:id", controller.updateEntity);

@@ -67,3 +67,12 @@ exports.updateEntity = async ({
     [name, entity_class, ent_status, discover_date, manager_id, description, id]
   );
 };
+
+exports.deleteEntity = async (id) => {
+  await pool.query(
+    `
+      DELETE FROM para_entities
+      WHERE id = $1`,
+    [id]
+  );
+};

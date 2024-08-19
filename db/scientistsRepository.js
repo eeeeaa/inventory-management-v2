@@ -43,3 +43,18 @@ exports.updateScientist = async ({ id, sci_name, department }) => {
     [id, sci_name, department]
   );
 };
+
+exports.deleteScientist = async (id) => {
+  try {
+    await pool.query(
+      `
+      DELETE FROM scientists
+      WHERE id = $1
+      `,
+      [id]
+    );
+    return null;
+  } catch (e) {
+    return e;
+  }
+};

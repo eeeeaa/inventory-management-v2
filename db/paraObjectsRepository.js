@@ -60,3 +60,12 @@ exports.updateObject = async ({
     [name, object_class, discover_date, manager_id, description, id]
   );
 };
+
+exports.deleteObject = async (id) => {
+  await pool.query(
+    `
+    DELETE FROM para_objects WHERE id = $1
+    `,
+    [id]
+  );
+};

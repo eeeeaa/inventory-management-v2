@@ -10,7 +10,11 @@ const validateScientistData = [
 
 exports.getScientists = asyncHandler(async (req, res) => {
   const scientists = await repository.getAllScientistData();
-  res.render("scientists/scientistsView", { title: "Scientists", scientists });
+  res.render("scientists/scientistsView", {
+    title: "Scientists",
+    scientists,
+    errorMsg: null,
+  });
 });
 
 exports.getScientistsCreateForm = asyncHandler(async (req, res) => {
@@ -70,3 +74,17 @@ exports.updateScientist = [
     res.redirect("/scientists");
   }),
 ];
+
+exports.deleteScientist = asyncHandler(async (req, res) => {
+  const error = await repository.deleteScientist(req.params.id);
+  if (error != null) {
+    const scientists = await repository.getAllScientistData();
+    res.render("scientists/scientistsView", {
+      title: "Scientists",
+      scientists,
+      errorMsg:
+        "This scientists can't be deleted! please remove him from entites and object management first.",
+    });
+  }
+  res.redirect("/scientists");
+});

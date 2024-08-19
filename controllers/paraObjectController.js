@@ -100,3 +100,8 @@ exports.updateObject = [
     res.redirect("/para-objects");
   }),
 ];
+
+exports.deleteObject = asyncHandler(async (req, res) => {
+  await repository.deleteObject(req.params.id);
+  res.redirect("/para-objects");
+});
