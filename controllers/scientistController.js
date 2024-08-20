@@ -1,5 +1,6 @@
 const asyncHandler = require("express-async-handler");
 const repository = require("../db/scientistsRepository");
+const { checkToken } = require("./common/tokenChecker");
 
 const { body, validationResult } = require("express-validator");
 
@@ -33,6 +34,7 @@ exports.getScientistsUpdateForm = asyncHandler(async (req, res) => {
 });
 
 exports.postScientist = [
+  checkToken,
   validateScientistData,
   asyncHandler(async (req, res) => {
     const errors = validationResult(req);
@@ -54,6 +56,7 @@ exports.postScientist = [
 ];
 
 exports.updateScientist = [
+  checkToken,
   validateScientistData,
   asyncHandler(async (req, res) => {
     const data = await repository.getScientist(req.params.id);
@@ -75,16 +78,19 @@ exports.updateScientist = [
   }),
 ];
 
-exports.deleteScientist = asyncHandler(async (req, res) => {
-  const error = await repository.deleteScientist(req.params.id);
-  if (error != null) {
-    const scientists = await repository.getAllScientistData();
-    res.render("scientists/scientistsView", {
-      title: "Scientists",
-      scientists,
-      errorMsg:
-        "This scientists can't be deleted! please remove him from entites and object management first.",
-    });
-  }
-  res.redirect("/scientists");
-});
+exports.deleteScientist = [
+  checkToken,
+  asyncHandler(async (req, res) => {
+    const error = await repository.deleteScientist(req.params.id);
+    if (error != null) {
+      const scientists = await repository.getAllScientistData();
+      res.render("scientists/scientistsView", {
+        title: "Scientists",
+        scientists,
+        errorMsg:
+          "This scientists can't be deleted! please remove him/her from entites and object management first.",
+      });
+    }
+    res.redirect("/scientists");
+  }),
+];

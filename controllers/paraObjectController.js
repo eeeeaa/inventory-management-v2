@@ -2,6 +2,7 @@ const asyncHandler = require("express-async-handler");
 const repository = require("../db/paraObjectsRepository");
 const managerRepository = require("../db/scientistsRepository");
 const { body, validationResult } = require("express-validator");
+const { checkToken } = require("./common/tokenChecker");
 
 const validateParaObjectData = [
   body("name").trim().escape(),
@@ -47,6 +48,7 @@ exports.getObjectsUpdateForm = asyncHandler(async (req, res) => {
 });
 
 exports.postObject = [
+  checkToken,
   validateParaObjectData,
   asyncHandler(async (req, res) => {
     const scientists = await managerRepository.getAllScientistData();
@@ -73,6 +75,7 @@ exports.postObject = [
 ];
 
 exports.updateObject = [
+  checkToken,
   validateParaObjectData,
   asyncHandler(async (req, res) => {
     const scientists = await managerRepository.getAllScientistData();
@@ -101,7 +104,10 @@ exports.updateObject = [
   }),
 ];
 
-exports.deleteObject = asyncHandler(async (req, res) => {
-  await repository.deleteObject(req.params.id);
-  res.redirect("/para-objects");
-});
+exports.deleteObject = [
+  checkToken,
+  asyncHandler(async (req, res) => {
+    await repository.deleteObject(req.params.id);
+    res.redirect("/para-objects");
+  }),
+];

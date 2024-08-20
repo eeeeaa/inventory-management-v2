@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const path = require("node:path");
+const cookieParser = require("cookie-parser");
 
 const scientistRouter = require("./routes/scientists");
 const paraEntityRouter = require("./routes/paraEntities");
@@ -16,6 +17,7 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 app.use("/", indexRouter);
 app.use("/scientists", scientistRouter);

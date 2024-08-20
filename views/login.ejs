@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("common/header") %>
+  <body>
+    <%- include("common/navbar") %>
+    <div class="content login-page">
+      <form action="/login" method="POST" class="login-form">
+        <label for="password">Admin Password:</label>
+        <input name="password" type="password" />
+        <button type="submit">Login</button>
+      </form>
+    </div>
+  </body>
+</html>

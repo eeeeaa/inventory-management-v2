@@ -2,6 +2,7 @@ const asyncHandler = require("express-async-handler");
 const repository = require("../db/paraEntitesRepository");
 const managerRepository = require("../db/scientistsRepository");
 const { body, validationResult } = require("express-validator");
+const { checkToken } = require("./common/tokenChecker");
 
 const status_list = repository.getStatusList();
 const classes = repository.getEntityClasses();
@@ -55,6 +56,7 @@ exports.getEntitiesUpdateForm = asyncHandler(async (req, res) => {
 });
 
 exports.postEntity = [
+  checkToken,
   validateParaEntityData,
   asyncHandler(async (req, res) => {
     const scientists = await managerRepository.getAllScientistData();
@@ -84,6 +86,7 @@ exports.postEntity = [
 ];
 
 exports.updateEntity = [
+  checkToken,
   validateParaEntityData,
   asyncHandler(async (req, res) => {
     const scientists = await managerRepository.getAllScientistData();
@@ -113,7 +116,10 @@ exports.updateEntity = [
   }),
 ];
 
-exports.deleteEntity = asyncHandler(async (req, res) => {
-  await repository.deleteEntity(req.params.id);
-  res.redirect("/para-entities");
-});
+exports.deleteEntity = [
+  checkToken,
+  asyncHandler(async (req, res) => {
+    await repository.deleteEntity(req.params.id);
+    res.redirect("/para-entities");
+  }),
+];
